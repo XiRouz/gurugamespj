@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Отзывы</h1>
+    <div class="row">
+        {% for review in reviews %}
+            <div class="col-sm-3 d-flex">
+                <div class="card bg-dark mt-3">
+
+                    <img class="card-img-top" src="{{ url_for('static', filename='images/' ~ review.image_filename) }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ review.title }}</h5>
+                        <p class="card-text">{{ review.text | truncate(100)}}</p>
+                        <a href="#" class="btn btn-primary testclass">Далее &rarr;</a>                      
+                    </div>
+
+                    <div class="card-footer">
+                        <p>Опубликовано {{ review.date.strftime('%d.%m.%Y') }}
+                            Автор: {{ review.author }}</p>    
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

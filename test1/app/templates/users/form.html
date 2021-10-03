@@ -1,0 +1,28 @@
+{% macro render_user_form(url, roles, current_user, user={}) %}
+<form class="coolcard" action="{{ url }}" method="POST">
+    <div class="form-group row">
+        <label for="login" class="fol-form-label col-md-2">Логин</label>
+        <div class="col-md-6">
+            <input class="form-control" type="text" name="login" id="login" value="{{ user.login or '' }}">
+        </div>
+    </div>
+    {% if request.endpoint == 'signup' or request.endpoint == 'createuser' %}
+    <div class="form-group row">
+        <label for="password" class="fol-form-label col-md-2">Пароль</label>
+        <div class="col-md-6">
+            <input class="form-control" type="password" name="password" id="password" value="{{ user.password or '' }}">
+        </div>
+    </div>
+    {% endif %}
+    <div class="form-group row">
+        <label for="email" class="fol-form-label col-md-2">Почта</label>
+        <div class="col-md-6">
+            <input class="form-control" type="text" name="email" id="email" value="{{ user.email or '' }}">
+        </div>
+    </div>
+    
+    <div class="form-group row col-md-2">
+        <input type="submit" class="btn btn-success" value="Зарегистрироваться">
+    </div>
+</form>
+{% endmacro %}

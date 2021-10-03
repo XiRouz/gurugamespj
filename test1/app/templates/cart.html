@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Корзина</h1>
+    <div class="row zalivka1">
+        <div class="col-9 px-2">
+            <div class="row no-gutters py-2">
+                <div class="col-3">
+                    <img class="img-fluid" src="{{ url_for('static', filename=game.main_picture) }}">
+                </div>
+                <div class="col-9">
+                    <div class="card-block px-2 ">
+                        <p class="gamecard-title mt-1">{{ game.name }}</p>
+                        <p class="gamecard-text mb-1">{{ game.genre_names | capitalize }}</p>
+                        <p class="gamecard-year mb-1">{{ game.release_date }}, {{ game.platform }}</p>
+                    </div>
+                </div>   
+            </div>
+        </div>
+        <div class="col-2 cart-price align-self-center px-0">
+            <div class="cart-price">{{ game.price }}₽</div>
+        </div>
+    </div>
+    
+    <form action="{{ url_for('buy', game_id=game.id) }}" method="POST">
+        <div class="row zalivka1">
+            <div class="col-9">
+                <div class="form-group row pt-3">
+                    <div class="col-md-6">
+                        <input class="form-control" type="text" name="email" id="email" maxlength="49" placeholder="Введите почту" 
+                        {% if current_user.is_authenticated %}value="{{ current_user.email }}"{% endif %}>
+                    </div>
+                </div>
+                <div class="form-group row pt-3">
+                    <div class="col-md-6">
+                        <input class="form-control" type="text" name="promocode" id="promocode" maxlength="49" placeholder="Введите промокод при наличии" value="">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="tos_agreement"><input type="checkbox" class="" id="tos_agreement" name="tos_agreement"> Я ознакомлен с <a href="">пользовательским соглашением</a>, описанием товара и региональными ограничениями, политикой конфиденциальности и даю согласие на обработку персональных данных.</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <input type="submit" class="btn btn-success" value="Перейти к оплате">
+                    </div>
+                </div>
+            </div>
+            <div class="col-2 cart-price">
+                Итого: {{ game.price }}Р
+                <input type="hidden" name="order_price" id="order_price" value="{{ game.price }}">
+            </div>
+            <div class="col-1">
+
+            </div>
+        </div>
+    </form>
+    
+{% endblock %}

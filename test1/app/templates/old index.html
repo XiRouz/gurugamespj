@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="zalivka1">
+    <div class="row">
+        
+            <div class="col-md-9">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                    {% for slidergame in slider %}
+                    
+                        <div id="{{ loop.index }}" class="carousel-item {% if loop.index == 1 %} active {% endif %}">
+                            <a href="{{ url_for('gamepage', game_id=slidergame.id) }}">
+                                <img class="d-block w-100" src="{{ url_for('static', filename=slidergame.main_picture) }}" alt="">
+                            </a>
+                        </div>
+  
+                    {% endfor %}
+                    </div>
+                    
+                    <a id="prev" class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                    </a>
+                    <a id="next" class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        
+
+            <div class="col-md-3">
+                <div id="carousel-heading" class="heading">{{ slider.0.name }}</div>
+                <div>
+                    <div id="carousel-discount" class="discount">-{{ slider.0.discount }}%</div>
+                    <div id="carousel-price" class="price">{{ slider.0.price }}₽</div>
+                    <!-- <button class="buy-button" type="button">КУПИТЬ</button> -->
+                </div>
+                <div id="carousel-description" class="description">
+                    <p>{{ slider.0.small_description }}</p>
+                </div>
+                <div id="carousel-genres" class="genre pr-4">
+                    Жанры: {{ slider.0.genre_names }} 
+                </div>
+            </div>
+
+    </div>
+</div>
+<div class="mt-4">
+    <div class="row mb-3">
+        <div class="col-md-2">
+            <div class="list-of-categories pt-0">
+                <ul class="categories zalivka2">
+                    <div class="zagolovok-spiska">Категории</div>
+                    {% for genre in genres %}
+                    <li class="о-item">
+                        {% if genre.name is upper %}
+                            {{ genre.name }}
+                        {% else %}
+                            {{ genre.name | capitalize }}
+                        {% endif %}
+                    </li> 
+                    {% endfor %}
+                  </ul>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="katalog pt-0">               
+                <ul class="nav nav-pills nav-fill">
+                    <li class="col-md-4 nav-item my-3 px-2">
+                      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Популярные</a>
+                    </li>
+                    <li class="col-md-4 nav-item my-3 px-2">
+                      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Новинки</a>
+                    </li>
+                    <li class="col-md-4 nav-item my-3 px-2">
+                      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Акции</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="card">
+                            {% for gamecard in populargames %}
+                            <a class="game-block" href="{{ url_for('gamepage', game_id=gamecard.id) }}">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                        <img class="img-fluid" src="{{ url_for('static', filename=gamecard.main_picture) }}">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card-block px-2 ">
+                                            <p class="gamecard-title mt-1">{{ gamecard.name }}</p>
+                                            <p class="gamecard-text mb-1">{{ gamecard.genre_names | capitalize }}</p>
+                                            <p class="gamecard-year mb-1">{{ gamecard.release_date }}, {{ gamecard.platform }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="card-discount">-{{ gamecard.discount }}%</div>
+                                        <div class="card-price">{{ gamecard.price }}₽</div>
+                                    </div>
+                                </div>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="card">
+                            {% for gamecard in newgames %}
+                            <a class="game-block" href="{{ url_for('gamepage', game_id=gamecard.id) }}">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                        <img class="img-fluid" src="{{ url_for('static', filename=gamecard.main_picture) }}">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card-block px-2 ">
+                                            <p class="gamecard-title mt-1">{{ gamecard.name }}</p>
+                                            <p class="gamecard-text mb-1">{{ gamecard.genre_names | capitalize }}</p>
+                                            <p class="gamecard-year mb-1">{{ gamecard.release_date }}, {{ gamecard.platform }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="card-discount">-{{ gamecard.discount }}%</div>
+                                        <div class="card-price">{{ gamecard.price }}₽</div>
+                                    </div>
+                                </div>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                        <div class="card">
+                            {% for gamecard in salegames %}
+                            <a class="game-block" href="{{ url_for('gamepage', game_id=gamecard.id) }}">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                        <img class="img-fluid" src="{{ url_for('static', filename=gamecard.main_picture) }}">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card-block px-2 ">
+                                            <p class="gamecard-title mt-1">{{ gamecard.name }}</p>
+                                            <p class="gamecard-text mb-1">{{ gamecard.genre_names | capitalize }}</p>
+                                            <p class="gamecard-year mb-1">{{ gamecard.release_date }}, {{ gamecard.platform }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="card-discount">-{{ gamecard.discount }}%</div>
+                                        <div class="card-price">{{ gamecard.price }}₽</div>
+                                    </div>
+                                </div>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="game-block nav-link rounded-edges mb-0">
+                    <a class="catalog-link" href="{{ url_for('catalog') }}">
+                        <p class="gamecard-title mt-2 mb-3" style="text-align: center; vertical-align: middle;">Показать весь каталог</p>
+                    </a>    
+                </div>            
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="d-flex h-100 rounded-edges" style="background: black; justify-content: center; align-items: center">
+                <img style="vertical-align: middle;" width="215" height="58" src="{{ url_for('static', filename='images/polytech_ad.jpg') }}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+            <script>
+                var sl = JSON.parse({{jsonslider|tojson}});
+                var sliderLength = sl.length;
+                var curSlider = 0;
+            </script>
+{% endblock %}

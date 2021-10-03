@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Пользователи</h1>
+<div class="container coolcard">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>login</th>
+                <th>role</th>
+                <th>email</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td class="align-middle">{{ user.id }}</td>
+                    <td class="user-name align-middle">{{ user.login }}</td>
+                    <td class="align-middle">{{ user.role_name }}</td>
+                    <td class="align-middle">{{ user.email }}</td>
+                    <td>
+                        <div class="btn-group">
+                            {% if current_user.can('show', record=user) %}
+                              <a class="btn btn-primary" href="{{ url_for('userpage', user_id=user.id) }}">Страница</a>
+                            {% endif %}
+                            {% if current_user.can('edit', record=user) %}
+                              <a class="btn btn-secondary" href="{{ url_for('edit', user_id=user.id) }}">Редактировать</a>
+                            {% endif %}
+                            {% if current_user.can('delete', record=user) %}
+                              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete-user-modal" data-url="{{ url_for('deleteuser', user_id=user.id) }}">
+                                Удалить
+                              </button>
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% if current_user.can('new') %}
+      <a class="btn btn-primary" href="{{ url_for('signup') }}">Создать пользователя</a>
+    {% endif %}
+
+    <div class="modal" tabindex="-1" role="dialog" id="delete-user-modal">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content bg-dark">
+            <div class="modal-header">
+              <h5 class="modal-title">Удаление учётной записи</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Вы уверены, что хотите удалить пользователя <span id="user-name"></span>?</p>
+              <form action="" method="POST" class="d-none">
+                <input type="submit" id="delete-btn">
+              </form>
+            </div>
+            <div class="modal-footer">
+              <label for="delete-btn" class="btn btn-danger mb-0">Да</label>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Нет</button>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

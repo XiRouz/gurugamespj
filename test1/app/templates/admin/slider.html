@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Слайдер</h1>
+<div class="container coolcard">
+    <table class="table mb-0">
+        <thead>
+            <tr>
+                <th width="72">ID</th>
+                <th>Name</th>
+                <th width="160">Image</th>
+                <th width="96"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for slidergame in slider %}
+                <tr>
+                    <td class="align-middle">{{ slidergame.id }}</td>
+                    <td class="slider-name align-middle">{{ slidergame.name }}</td>
+                    <td> <img style="float: right" class="img-fluid" width="160" height="90" src="{{ url_for('static', filename=slidergame.main_picture) }}"></td>
+                    <td style="vertical-align: middle">
+                        <div class="btn-group " style="float: right">
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete-slider-modal" data-url="{{ url_for('deleteslider', game_id=slidergame.id) }}">
+                                Delete
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<h1>Товары</h1>
+<div class="container coolcard">
+    <table class="table mb-0">
+        <thead>
+            <tr>
+                <th width="72">ID</th>
+                <th>Name</th>
+                <th width="160">Image</th>
+                <th width="96"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for game in games %}
+                <tr>
+                    <td class="align-middle">{{ game.id }}</td>
+                    <td class="slider-name align-middle">{{ game.name }}</td>
+                    <td><img style="float: right" class="img-fluid" width="160" height="90" src="{{ url_for('static', filename=game.main_picture) }}"></td>
+                    <td style="vertical-align: middle">
+                      <div class="btn-group " style="float: right;">
+                        <a class="btn btn-success" href="{{ url_for('newslider', game_id=game.id) }}">Add</a>
+                      </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="delete-slider-modal">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content bg-dark">
+            <div class="modal-header">
+              <h5 class="modal-title">Удаление товара из слайдера</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Вы уверены, что хотите удалить товар <span id="slider-name"></span> из слайдера?</p>
+              <form id="dlt-slider" action="" method="POST" class="d-none">
+                <input type="submit" id="delete-btn">
+              </form>
+            </div>
+            <div class="modal-footer">
+              <label for="delete-btn" class="btn btn-danger mb-0">Да</label>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Нет</button>
+            </div>
+          </div>
+        </div>
+    </div>
+{% endblock %}

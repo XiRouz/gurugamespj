@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+    <div class="row">
+        <div class="col-4">
+            <h1>Личный кабинет</h1>
+            <table class="table mt-3 coolcard">
+                <tbody>
+                    <tr>
+                        <td><b>Логин</b></td>
+                        <td>{{ user.login }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Почта</b></td>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-8">
+            <h1>Мои заказы</h1>
+            <table class="table mt-3 coolcard">
+                <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Цена</th>
+                        <th>Дата</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td class="align-middle">{{ order.game_name }}</td>
+                            <td class="align-middle">{{ order.order_price }}</td>
+                            <td class="align-middle">{{ order.order_date }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+
+{% endblock %}

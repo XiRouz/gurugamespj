@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Добавление игры в слайдер</h1>
+<form class="coolcard" action="{{ url_for('newslider_commit') }}" method="POST">
+    <div class="form-group row">
+        <label for="game_id" class="fol-form-label col-md-2">ID игры</label>
+        <div class="col-md-6">
+            <input class="form-control" type="text" name="game_id" id="game_id">
+        </div>
+    </div>
+        
+    <div class="form-group row">
+        <input type="submit" class="btn btn-primary ml-2" value="Сохранить">
+    </div>
+</form>
+{% endblock %}

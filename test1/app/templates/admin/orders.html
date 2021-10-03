@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Заказы</h1>
+    <div class="container coolcard">
+        <table class="table mb-0">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>GameID</th>
+                    <th>Price</th>
+                    <th>Email</th>
+                    <th>Date</th>
+                    <th>Promo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td class="align-middle">{{ order.id }}</td>
+                        <td class="align-middle">{{ order.boughtgame_id }}</td>
+                        <td class="align-middle">{{ order.order_price }}</td>
+                        <td class="align-middle">{{ order.customer_email }}</td>
+                        <td class="align-middle">{{ order.order_date }}</td>
+                        <td class="align-middle">{{ order.usedpromo_id }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

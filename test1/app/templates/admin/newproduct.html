@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% from 'admin/productform.html' import render_product_form %}
+
+{% block content %}
+    <h1>Создание товара</h1>
+
+    {{ render_product_form(url_for('newgame_commit', game_id=game.id), genres, game) }}
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Панель администратора</h1>
+    <table class="table mt-3 coolcard">
+        <tbody>
+            <tr>
+                <td>id</td>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <td>Логин</td>
+                <td>{{ user.login }}</td>
+            </tr>
+            <tr>
+                <td>Роль</td>
+                <td>{{ role.name }}</td>
+            </tr>
+            <tr>
+                <td>Почта</td>
+                <td>{{ user.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-primary" href="{{ url_for('products') }}">Все продукты</a>
+    <a class="btn btn-primary" href="{{ url_for('slider') }}">Объекты слайдера</a>
+    <a class="btn btn-primary" href="{{ url_for('users') }}">Все пользователи</a>
+    <a class="btn btn-primary" href="{{ url_for('orders') }}">Все заказы</a>
+
+{% endblock %}

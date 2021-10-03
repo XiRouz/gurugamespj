@@ -1,0 +1,533 @@
+html {
+    min-height: 100%;
+    position: relative;
+}
+body { 
+    background: url(images/background_pattern.png); 
+    background-repeat: repeat;
+    color: white!important;
+    margin-bottom: 120px;
+}
+.footer{
+    position: absolute;
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    bottom: 0;
+    left: 0;
+    height: 100px;
+    width: 100%;
+    background: #36393F;
+    color: white;
+}
+.pict-footer{
+    display: inline-block;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 25px;
+    left: 25px; 
+}
+.polz-sogl{
+    padding-top: 25px;
+    color: white;
+}
+.polz-text{
+    padding-top: 25px;
+    font-weight: normal;
+    font-size: 10px;
+}
+.table
+{
+    color: white
+}
+@font-face {
+    font-family: 'Eras Bold ITC';
+    src: url('fonts/ERASB.ttf');
+}
+.navbar-brand {
+    font-family: 'Eras Bold ITC';
+    font-weight: bold;
+    font-size: 24px;
+}
+.nav-link {
+    font-family: 'Segoe UI';
+    font-weight: bold;
+    font-size: 18px;
+    padding: .5rem .5rem
+}
+.coolcard {
+    background-color: #343a40;
+    padding: .5rem 1rem
+}
+
+.navbar {
+    /* margin-bottom: 30px; */
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    width: 100%;
+    /* min-width: 1024px; */
+    height: 55px;
+}
+.navbar a {
+  
+  /* font-family: 'Segoe UI'; */
+  font-weight: bold;
+}
+.navbar-nav {
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 32px;
+}
+/* /////////////////////////////////////////////////////////////////////// */
+.mt-from-header {
+    margin-top: 70px;
+}
+.zalivka1 {
+    background: #36393F;
+}
+.heading{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    text-align: left;
+    padding-top: 4px;
+    padding-bottom: 6px;
+    padding-right: 4px;
+    color: white
+}
+.discount{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    padding-left: 4px;
+    padding-right: 4px;
+    display: inline-block;
+    background: #4ABC0C;
+    color: white
+}
+.discount2{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 26px;
+    text-align: center;
+    padding-left: 4px;
+    padding-right: 4px;
+    display: inline-block;
+    background: #4ABC0C;
+    color: white
+}
+.price{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    padding-left: 4px;
+    padding-right: 4px;
+    display: inline-block;
+    border: 1px solid #4ABC0C;
+    color: white
+}
+.price2{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 26px;
+    text-align: center;
+    padding-left: 4px;
+    padding-right: 4px;
+    display: inline-block;
+    border: 1px solid #4ABC0C;
+    color: white
+}
+.buy-button{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    position: absolute;
+    right: 30px;
+    text-align: center;
+    padding-left: 6px;
+    padding-right: 6px;
+    display: inline-block;
+    background: #4ABC0C;
+    color: white
+}
+.buy-button2{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 26px;
+    right: 30px;
+    text-align: center;
+    padding-left: 6px;
+    padding-right: 6px;
+    display: inline-block;
+    background: #4ABC0C;
+    color: white
+}
+.buy-button2:hover{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 26px;
+    right: 30px;
+    text-align: center;
+    padding-left: 6px;
+    padding-right: 6px;
+    display: inline-block;
+    background: #4ABC0C;
+    color: white;
+    text-decoration: none;
+}
+.description{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-size: 14px;
+    position: absolute;
+    padding-top: 20px;
+    padding-right: 25px;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: white
+}
+.genre{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    position: absolute;
+    bottom: 20px;
+    color: white;
+}
+/* /////////////////////////////////////////////////////////////////////// */
+.zalivka2 {
+    
+    background: #36393F;
+}
+.zagolovok-spiska{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    padding-top: 10px;
+    text-align: left;
+    color: white
+}
+.list-of-categories{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+    padding-top: 10px;
+    /* background: #36393F; */
+    color: white;
+}
+.categories{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    padding: 0;
+    background: #36393F;
+    list-style-type: none;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    
+}
+/* ///////////////////////////////////////////////////////////////////////// */
+.zalivka3 {
+    background: #36393F;
+}
+
+.katalog{
+    padding-top: 15px;
+}
+.popular{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    padding-left: 4px;
+    padding-right: 4px;
+    display: inline-block;
+    background: #36393F;
+    border: 1px solid white;
+    color: white 
+}
+.nav-pills{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    color: #36393F;
+    background: #36393F;
+}
+.nav-pills .nav-link.active {
+    border: 1px solid white;
+    background-color: #9A9A9A;
+}
+.nav-link {
+    color:white;
+}
+.game{
+    padding-top: 10px;
+    background-color: #36393F;
+}
+.zalivka4{
+    background-color: #52565F;
+}
+.game-img{
+    display: inline-block;
+    height: 100px; 
+    width: 220px; 
+}
+.game-text{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: bottom;
+    padding-top: 4px;
+    /* padding-bottom: 6px; */
+    padding-right: 4px;
+    color: white;
+    display: inline-block;
+    /* color: white; */
+}
+.g-name{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    /* text-align: top; */
+    /* padding-left: 4px; */
+    /* padding-right: 4px; */
+    color: white;
+}
+.g-desc{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    /* text-align: left; */
+    /* padding-left: 4px; */
+    /* padding-right: 4px; */
+    color: white;
+}
+.g-year{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    text-align: bottom;
+    /* padding-left: 4px; */
+    /* padding-right: 4px; */
+    color: white;
+}
+.content1{
+    position: absolute;
+    visibility: hidden;
+    overflow: hidden;
+    /* width: 494px; */
+}
+.card{
+    border: 0;
+    border-radius: 0;
+    background: #36393F;
+}
+.rounded-edges {
+    border-radius: .25rem;
+}
+.game-block{
+    margin-bottom: 15px;
+    background: #52565F;
+}
+.game-block:hover{
+    margin-bottom: 15px;
+    background: #52565F;
+    text-decoration: none;
+}
+.gamecard-title{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 1.2;
+    color: white;
+}
+.gamecard-text{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 1.1;
+    color: white;
+    position: absolute;
+    bottom: 20px;
+}
+.gamecard-year{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: rgb(151, 151, 151);
+    position: absolute;
+    bottom: 0px;
+}
+.card-image{
+    width: 100%;
+    height: 100%;
+}
+
+.card-discount{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    position: absolute;
+    right: 10px;
+    top: 30px;
+    padding-left: 4px;
+    padding-right: 4px;
+    display: inline-block;
+    background: #4ABC0C;
+    color: white;
+}
+.card-price{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    position: absolute;
+    right: 10px;
+    top: 60px;
+    padding-left: 4px;
+    padding-right: 4px;
+    display: inline-block;
+    color: white;
+}
+.cart-price{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: right;
+    vertical-align: middle;
+    padding-left: 4px;
+    padding-right: 4px;
+    display: inline-block;
+    color: white;
+}
+.gamepage-gradient{
+    background: linear-gradient(180deg, #1D2027 83.02%, #36393F 100%);
+}
+.catalog-link:hover{
+    text-decoration: none;
+}
+.filter-price{
+    padding-bottom: 30px;
+}
+
+.filter-slider {
+    position: relative;
+    
+    height: 4px;
+    margin-top: 25px;
+    margin-left: 25px;
+    margin-right: 25px;
+  
+    border-top: #9A9A9A 1px solid;
+    border-radius: 6px;
+    background: #fff;
+}
+.filter-slider .ui-slider-range {
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    background: #9A9A9A;
+}
+.filter-slider .ui-slider-handle {
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    position: absolute;
+    z-index: 1;
+    top: -8px;
+    display: block;
+    width: 50px;
+    height: 20px;
+    margin-left: -25px;
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
+    border-radius: 13px;
+    background: #9A9A9A;
+}
+.filters{
+    margin-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background: #36393F;
+}
+.platf{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: white;
+}
+.reset{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    padding-top: 15px;
+    color: red;
+}
+.p-text{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    color: white;
+    font-size: 18px;
+    padding-top: 5px;
+}
+.helpcard-title{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 1.2;
+    color: white;
+}
+.helpcard-text{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 1.3;
+    color: white;
+}

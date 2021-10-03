@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% from 'users/form.html' import render_user_form %}
+
+{% block content %}
+    <h1>Регистрация</h1>
+
+    {{ render_user_form(url_for('createuser'), roles, user) }}
+
+{% endblock %}

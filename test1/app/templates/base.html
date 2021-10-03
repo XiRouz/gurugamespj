@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <title>
+      {% if title %}
+        {{ title }}
+      {% else %}
+        GuruGames
+      {% endif %}
+    </title>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <div class="container cont">
+        
+        <a class="navbar-brand" href="{{ url_for('index') }}">
+          <img src="{{ url_for('static', filename='images/logo_ava.png') }}" alt="avatar" width="35" height="35" hspace="5">GuruGames
+        </a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation"></button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+              <li class="nav-item {% if request.endpoint == 'catalog' %}active{% endif %}">
+                  <a class="nav-link" href="{{ url_for('catalog') }}">Каталог</a>
+              </li>
+              <li class="nav-item {% if request.endpoint == 'guarantees' %}active{% endif %}">
+                <a class="nav-link" href="{{ url_for('guarantees') }}">Гарантии</a>
+              </li>
+              <li class="nav-item {% if request.endpoint == 'help' %}active{% endif %}">
+                <a class="nav-link" href="{{ url_for('help') }}">Помощь</a>
+              </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+              <li class="nav-item">
+                {% if current_user.is_authenticated %}
+                  <div class="dropdown show ">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {{ current_user.login }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      {% if current_user.can('admin_rights', record=user) %}
+                        <a class="dropdown-item" href="{{ url_for('admin', user_id=current_user.id) }}">Панель администратора</a>
+                      {% else %}
+                        <a class="dropdown-item" href="{{ url_for('userpage', user_id=current_user.id) }}">Личный кабинет</a>
+                      {% endif %}
+                      <a class="dropdown-item" href="{{ url_for('auth.logout') }}">Выйти</a>
+                    </div>
+                  </div>
+                {% else %}
+                  <a class="nav-link" href="{{ url_for('signup') }}">Зарегистрироваться</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('auth.login') }}">Войти</a>
+                {% endif %}
+              </li>
+            </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="mt-from-header">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, msg in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+          {{ msg }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% endfor %}
+      {% endwith %}
+    </div>
+
+    <div class="container cont">
+      {% block content %}
+      <h1>default</h1>
+      {% endblock %}
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script defer src="{{ url_for('static', filename='main.js') }}"></script>
+    
+  </body>
+  <footer class="footer">
+    <div class="container cont">
+        <div class="row">
+          <div class="col-1">
+              <div class="pict-footer align-middle">
+                <img src="{{ url_for('static', filename='images/logo_ava.png') }}" alt="avatar" width="50" height="50">
+              </div>
+          </div>
+          <div class="col-2">
+               <p class="polz-sogl"><a class="polz-sogl" href="{{ url_for('tos') }}">Пользовательское соглашение</a></p>
+          </div>
+          <div class="col-5">
+              <p class="polz-text">Все права защищены. Копирование любых материалов сайта запрещено! Все названия продуктов и игр, 
+                компаний и марок, логотипы, товарные знаки и другие материалы являются собственностью 
+                соответствующих владельцев. Только лицензионные ключи ко всем игровым платформам: Steam, Uplay, 
+                Battle.net, Origin и другие. <b>GuruGames © 2019-2020</b></p>
+          </div>
+          <div class="col-4">
+           
+          </div>
+        </div>
+    </div>
+ </footer>
+</html>

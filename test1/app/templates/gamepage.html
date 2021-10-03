@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ game.name }}</h1>
+    <div class="row zalivka1">
+        <div class="col-8 px-0" >
+            <img class="d-block w-100" src="{{ url_for('static', filename=game.main_picture) }}" alt="">
+        </div>
+        <div class="col-4">
+            <ul class="categories px-0 py-2">
+                <li class="о-item py-2"><b>Платформа:</b> {{ game.platform }}</li>
+                <li class="о-item py-2"><b>Жанр:</b> {{ game.genre_names | capitalize }}</li>
+                <li class="о-item py-2"><b>Дата выхода:</b> {{ game.release_date }}</li>
+                <li class="о-item py-2"><b>Наличие:</b> {{ game.quantity }}</li>
+                <li class="о-item py-2">{{ game.small_description }}</li>
+            </ul>
+            <div class="d-flex justify-content-center mb-2 genre" >
+                <div class="discount2">-{{ game.discount }}%</div>
+                <div class="price2">{{ game.price }}₽</div>
+                <a href="{{ url_for('cart', game_id=game.id) }}" class="buy-button2 ml-2" style="border-width: 0px;" type="button">КУПИТЬ</a>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-8 pl-0 pr-2">
+            <div class="katalog pt-0">               
+                <ul class="nav nav-pills nav-fill">
+                    <li class="col-4 nav-item my-3 px-2">
+                      <a class="nav-link active" id="descr-tab" data-toggle="tab" href="#descr" role="tab" aria-controls="descr" aria-selected="true">Описание</a>
+                    </li>
+                    <li class="col-4 nav-item my-3 px-2">
+                      <a class="nav-link" id="sysreq-tab" data-toggle="tab" href="#sysreq" role="tab" aria-controls="sysreq" aria-selected="false">Системные требования</a>
+                    </li>
+                    <li class="col-4 nav-item my-3 px-2">
+                      <a class="nav-link" id="activation-tab" data-toggle="tab" href="#activation" role="tab" aria-controls="activation" aria-selected="false">Активация</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="descr" role="tabpanel" aria-labelledby="descr-tab">
+                        <div class="card px-3 py-2">
+                            {{ game.big_description | safe }}
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="sysreq" role="tabpanel" aria-labelledby="sysreq-tab">
+                        <div class="card px-3 py-2">
+                            {{ game.sysrequirements | safe }}
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="activation" role="tabpanel" aria-labelledby="activation-tab">
+                        <div class="card px-3 py-2">
+                            {{ game.activation | safe }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 zalivka1 pl-2">
+            
+        </div>
+    </div>
+{% endblock %}

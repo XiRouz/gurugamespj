@@ -1,0 +1,142 @@
+{% macro render_product_form(url, genres, gamegenres={}, game={}) %}
+<form class="coolcard" action="{{ url }}" method="POST">
+    <div class="form-group row">
+        <label for="name" class="fol-form-label align-middle col-md-2">Название</label>
+        <div class="col-md-10">
+            <input class="form-control" type="text" name="name" id="name" maxlength="34" value="{{ game.name or '' }}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="default_price" class=" fol-form-label align-middle col-md-2">Оригинальная цена</label>
+        <div class="col-md-10">
+            <input class="form-control" type="number" name="default_price" id="default_price" min="50" value="{{ game.default_price or '' }}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="discount" class="fol-form-label align-middle col-md-2">Скидка</label>
+        <div class="col-md-10">
+            <input class="form-control" type="number" name="discount" id="discount" min="1" max="90" value="{{ game.discount or '' }}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="small_description" class="fol-form-label align-middle col-md-2">Небольшое описание
+            <br><b style="color:red">Использовать тег &lt;br&gt; для переноса строки</b>
+        </label>
+        <div class="col-md-10">
+            <textarea class="form-control" name="small_description" id="small_description" rows="10" maxlength="214">{{ game.small_description or '' }}</textarea>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="big_description" class="fol-form-label align-middle col-md-2">Большое описание
+            <br><b style="color:red">Использовать тег &lt;br&gt; для переноса строки</b>
+        </label>
+        <div class="col-md-10">
+            <textarea class="form-control" name="big_description" id="big_description" rows="15" maxlength="1999">{{ game.big_description or '' }}</textarea>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="release_date" class="fol-form-label align-middle col-md-2">Дата выхода</label>
+        <div class="col-md-10">
+            <input class="form-control" type="date" name="release_date" id="release_date" value="{{ game.release_date or '' }}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="quantity" class="fol-form-label align-middle col-md-2">Кол-во</label>
+        <div class="col-md-10">
+            <input class="form-control" type="number" name="quantity" id="quantity" min="1" value="{{ game.quantity or '' }}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="main_picture" class="fol-form-label align-middle col-md-2">Основная картинка (FULL HD)
+            <br><b style="color:red">Не забыть прикрепить картинку!</b>
+        </label>
+        <div class="col-md-10">
+            <input type="file" name="main_picture" id="main_picture">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="prev_main_picture" class="fol-form-label align-middle col-md-2">Текущая картинка</label>
+        <div class="col-md-10">
+            <img src="{{ url_for('static', filename=game.main_picture) }}" alt="" width="320" height="180">
+            <b style="color:red">{{ url_for('static', filename=game.main_picture) }}</b>
+            <input type="hidden" name="prev_main_picture" id="prev_main_picture" value="{{ game.main_picture }}">
+        </div>
+    </div>
+    
+
+    <div class="form-group row">
+        <p class="fol-form-label align-middle col-md-2">Жанры</p>
+        <div class="col-md-10">
+            <table>
+                {% for row in genres|batch(3, '&nbsp;') %}
+                    {% set outer_loop = loop %}
+                    <tr>
+                    {% for genre in row %}
+                        <td><input type="checkbox" {% if ((outer_loop.index-1)*3+loop.index) in gamegenres | map(attribute='genre_id') %}checked{% endif %} name="genres" class="genres" id="c-{{ (outer_loop.index-1)*3+loop.index }}" value="{{ (outer_loop.index-1)*3+loop.index }}"><label for="c-{{ (outer_loop.index-1)*3+loop.index }}" class="pl-1 pr-2">
+                        {% if genre.name is upper %}
+                            {{ genre.name }}
+                        {% else %}
+                            {{ genre.name | capitalize }}
+                        {% endif %}
+                        </label></td>
+                    {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="platform" class="fol-form-label align-middle col-md-2">Платформа</label>
+        <div class="col-md-10">
+            <select name="platform" id="platform" class="form-control">
+                <option value="Windows"{% if game.platform == 'Windows' %}selected{% endif %}>Windows</option>
+                <option value="Linux"{% if game.platform == 'Linux' %}selected{% endif %}>Linux</option>
+                <option value="PlayStation"{% if game.platform == 'PlayStation' %}selected{% endif %}>PlayStation</option>
+                <option value="Xbox"{% if game.platform == 'Xbox' %}selected{% endif %}>Xbox</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="sysrequirements" class="fol-form-label align-middle col-md-2">Системные требования
+            <br><b style="color:red">Использовать тег &lt;br&gt; для переноса строки</b>
+        </label>
+        <div class="col-md-10">
+            <textarea class="form-control" name="sysrequirements" id="sysrequirements" rows="10" maxlength="699">{{ game.sysrequirements or '' }}</textarea>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="activation" class="fol-form-label align-middle col-md-2">Активация
+            <br><b style="color:red">Использовать тег &lt;br&gt; для переноса строки</b>
+        </label>
+        <div class="col-md-10">
+            <textarea class="form-control" name="activation" id="activation" rows="10" maxlength="699">{{ game.activation or '' }}</textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="form-check col-sm-10">
+            <input type="checkbox" class="form-check-input" id="is_new" name="is_new" {% if game.is_new == 1 %} checked {% endif %}>
+            <label for="is_new" class="form-check-label align-middle">Новинка</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="form-check col-sm-10">
+            <input type="checkbox" class="form-check-input" id="is_bestseller" name="is_bestseller" {% if game.is_bestseller == 1 %} checked {% endif %}>
+            <label for="is_bestseller" class="form-check-label align-middle">Популярная(бестселлер)</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="form-check col-sm-10">
+            <input type="checkbox" class="form-check-input" id="is_onsale" name="is_onsale" {% if game.is_onsale == 1 %} checked {% endif %}>
+            <label for="is_onsale" class="form-check-label align-middle">Акция</label>
+        </div>
+    </div>
+    
+    <div class="form-group row">
+        <input type="submit" class="btn btn-primary" value="Сохранить">
+    </div>
+</form>
+{% endmacro %}

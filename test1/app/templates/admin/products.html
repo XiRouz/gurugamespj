@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Товары</h1>
+    <div class="container coolcard">
+        <table class="table mb-0">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Default_price</th>
+                    <th>Discount</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for game in games %}
+                    <tr>
+                        <td class="align-middle">{{ game.id }}</td>
+                        <td class="game-name align-middle">{{ game.name }}</td>
+                        <td class="align-middle">{{ game.default_price }}</td>
+                        <td class="align-middle">{{ game.discount }}</td>
+                        <td class="align-middle">{{ game.price }}</td>
+                        <td class="align-middle">{{ game.quantity }}</td>
+                        <td>
+                            <div class="btn-group" style="float: right">
+                                <a class="btn btn-secondary" href="{{ url_for('editgame', game_id=game.id) }}">Edit</a>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete-game-modal" data-url="{{ url_for('deletegame', game_id=game.id) }}">
+                                    Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a class="btn btn-primary" href="{{ url_for('newgame') }}">Создать товар</a>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="delete-game-modal">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content bg-dark">
+            <div class="modal-header">
+              <h5 class="modal-title">Удаление товара</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Вы уверены, что хотите удалить товар <span id="game-name"></span>?</p>
+              <form id="dlt-game" action="" method="POST" class="d-none">
+                <input type="submit" id="delete-btn">
+              </form>
+            </div>
+            <div class="modal-footer">
+              <label for="delete-btn" class="btn btn-danger mb-0">Да</label>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Нет</button>
+            </div>
+          </div>
+        </div>
+    </div>
+{% endblock %}
